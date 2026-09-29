@@ -1,0 +1,50 @@
+/*
+    Yalin Zhang
+    CSC 4370/6370 Web Programming
+    Homework 2 - My Movie Review
+    Print Stylesheet
+*/
+
+body {
+    background: white;
+    color: black;
+}
+
+#banner {
+    display: none;
+}
+
+#content {
+    width: 100%;
+    border: 1px solid black;
+}
+
+#validators {
+    display: none;
+}
+
+#review-columns {
+    display: block;
+    padding: 10px;
+}
+
+.review-column {
+    width: 100%;
+}
+
+.review-box {
+    page-break-inside: avoid;
+}
+
+.review {
+    page-break-inside: avoid;
+}
+
+#overview {
+    page-break-inside: avoid;
+}
+
+a {
+    color: black;
+    text-decoration: underline;
+}

@@ -1,0 +1,294 @@
+<!--
+    Name: Yalin Zhang
+    Course: CSC 4370/6370 Web Programming
+    Assignment: Homework 2 - My Movie Review
+
+    Description:
+    This page recreates the TMNT movie review layout using
+    semantic HTML, CSS Grid, Flexbox, and responsive design.
+
+    Contents:
+    Movie rating, critic reviews, general overview,
+    responsive layout, and validation links.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MMR - My Movie Review</title>
+
+    <link rel="icon" type="image/gif" href="rotten.gif">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="print.css" media="print">
+</head>
+
+<body>
+<header id="banner">
+    <img src="banner.png" alt="Rancid Tomatoes">
+</header>
+<h1 id="movie-title">TMNT (2007)</h1>
+<main id="content">
+
+    <div id="reviews">
+
+    <div id="rating">
+        <img src="rottenbig.png" alt="Rotten">
+        <span class="score">32%</span>
+        <span class="review-total">(88 reviews total)</span>
+    </div>
+    <div id="review-columns">
+
+    <!-- LEFT COLUMN -->
+    <div class="review-column" id="left-column">
+
+        <!-- Review 1 -->
+        <div class="review">
+
+            <p class="review-box">
+                <img src="rotten.gif" alt="Rotten">
+                <q>
+                    Ditching the cheeky, self-aware wink that helped to exuse
+                    the concept's inherent corniness, the movie attempts to look
+                    polished and 'cool', but the been-there animation can't compete
+                    witht he then-cutting-edge puppetry of the 1990 live-action movie
+                </q>
+            </p>
+
+            <p class="critic">
+            <img src="critic.gif" alt="Critic">
+            <span class="critic-info">
+            Peter Debruge<br>
+            <em>Variety</em>
+            </span>
+            </p>
+
+        </div>
+
+
+        <!-- Review 3 -->
+        <div class="review">
+
+            <p class="review-box">
+                <img src="fresh.gif" alt="Fresh">
+                <q>
+                    TMNT is a fun, action-filled adventure that will satisfy longtime
+                    fans and generate a legion of new ones.
+                </q>
+            </p>
+
+            <p class="critic">
+            <img src="critic.gif" alt="Critic">
+            <span class="critic-info">
+            Todd Gilchrist<br>
+            <em>IGN Movies</em>
+            </span>
+            </p>
+
+        </div>
+
+
+        <!-- Review 5 -->
+        <div class="review">
+
+            <p class="review-box">
+                <img src="rotten.gif" alt="Rotten">
+                <q>It stinks!</q>
+            </p>
+
+            <p class="critic">
+            <img src="critic.gif" alt="Critic">
+            <span class="critic-info">
+            Jay Sherman (unemployed)
+            </span>
+            </p>
+
+        </div>
+
+
+        <!-- Review 7 -->
+        <div class="review">
+
+            <p class="review-box">
+                <img src="rotten.gif" alt="Rotten">
+                <q>
+                    The rubber suits are gone and they've been redone with fancy
+                    computer technology, but that hasn't stopped them from becoming dull.
+                </q>
+            </p>
+
+            <p class="critic">
+           <img src="critic.gif" alt="Critic">
+           <span class="critic-info">
+            Joshua Tyler<br>
+           <em>CinemaBlend.com</em>
+           </span>
+           </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT COLUMN -->
+    <div class="review-column" id="right-column">
+
+        <!-- Review 2 -->
+        <div class="review">
+
+            <p class="review-box">
+                <img src="rotten.gif" alt="Rotten">
+                <q>
+                    The turtles themselves may look prettier, but are no smarter;
+                    torn irreparably from their countercultural roots, out superheoes
+                    on the half shell have been firmly co-opted by the industry their
+                    creators once sought to spoof
+                </q>
+            </p>
+
+            <p class="critic">
+            <img src="critic.gif" alt="Critic">
+            <span class="critic-info">
+             Jeannette Catsoulis<br>
+            <em>NewYork Times</em>
+            </span>
+            </p>
+
+        </div>
+
+
+        <!-- Review 4 -->
+        <div class="review">
+
+            <p class="review-box">
+                <img src="rotten.gif" alt="Rotten">
+                <q>
+                    Impersonally animated and arbitrarily plotted, the story appears
+                    to have ben made up as the filmmakers went along.
+                </q>
+            </p>
+
+            <p class="critic">
+            <img src="critic.gif" alt="Critic">
+            <span class="critic-info">
+            Ed Gonzalez<br>
+            <em>Slant Magazine</em>
+            </span>
+            </p>
+
+        </div>
+
+
+        <!-- Review 6 -->
+        <div class="review">
+
+            <p class="review-box">
+                <img src="fresh.gif" alt="Fresh">
+                <q>
+                    The striking use of image and motion allows each sequence to leave
+                    an impression. It's an accomplished restart to this franchise.
+                </q>
+            </p>
+
+            <p class="critic">
+            <img src="critic.gif" alt="Critic">
+            <span class="critic-info">
+            Mark Palermo<br>
+            <em>Coast (Halifax, Nova Scotia)</em>
+            </span>
+            </p>
+
+        </div>
+
+
+        <!-- Review 8 -->
+        <div class="review">
+
+            <p class="review-box">
+                <img src="rotten.gif" alt="Rotten">
+                <q>
+                    The Script feels like it was computer generated. This mechanical
+                    presentation lacks the cheesy charm of the three live action films.
+                </q>
+            </p>
+
+            <p class="critic">
+           <img src="critic.gif" alt="Critic">
+           <span class="critic-info">
+            Steve Rhodes<br>
+           <em>Internet Review</em>
+           </span>
+           </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+    <aside id="overview">
+
+    <img id="overview-image"
+         src="generaloverview.png"
+         alt="TMNT movie poster">
+         <dl id="movie-info">
+
+    <dt>STARRING</dt>
+    <dd>Mako</dd>
+    <dd>Sarah Michelle Gellar</dd>
+    <dt>DIRECTOR</dt>
+    <dd>Kevin Munroe</dd>
+
+    <dt>RATING</dt>
+    <dd>PG</dd>
+    <dt>THEATRICAL RELEASE</dt>
+    <dd>Mar 23, 2007</dd>
+
+    <dt>MOVIE SYNOPISIS</dt>
+    <dd>
+    After the defeat of their old arch nemesis, The Shredder,
+    the Turtles have grown apart as a family.
+    </dd>
+     <dt>RELEASE COMPANY</dt>
+    <dd>Warner Bros.</dd>
+
+    <dt>MAPP RATING</dt>
+    <dd>
+    PG, for animated action violence, some scary cartoon images
+    and mild language
+    </dd>
+    <dt>GENRE</dt>
+    <dd>
+    Action/Adventure, Comedies, Childrens, Martial Atrts,
+    Superheroes, Ninjas, Animated Characters
+    </dd>
+
+    <dt>OFFICIAL MOVIE SITE</dt>
+    <dd>
+    <a href="https://www.tmnt.com/">The offical TMNT Site</a>
+    </dd>
+    </dl>
+
+    </aside>
+<footer id="review-footer">
+    <p>(1-8) of 88</p>
+</footer>
+</main>
+<div id="validators">
+
+    <a href="https://validator.w3.org/">
+        <img src="w3c-xhtml.png" alt="Valid HTML">
+    </a>
+
+    <a href="https://jigsaw.w3.org/css-validator/">
+        <img src="w3c-css.png" alt="Valid CSS">
+    </a>
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,628 @@
+<!--
+    Name: Yalin Zhang
+    Course: CSC 4370/6370 Web Programming
+    Assignment: Homework 2 - Critical Thinking Lab
+
+    Description:
+    This page documents the Critical Thinking Lab for Homework 2.
+    It includes implementation-specific evidence, measurements,
+    code excerpts, responsive layout analysis, and failure analysis.
+
+    Contents:
+    Q1 - Cascade Investigation
+    Q2 - Responsive Trade-off
+    Q3 - Architecture Defense
+    Q4 - Failure Analysis
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Homework 2 - Critical Thinking Lab</title>
+
+    <style>
+        body {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #222;
+            background-color: #f5f5f5;
+        }
+
+        header,
+        section {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        h2 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            margin-top: 25px;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        pre {
+            background-color: #eeeeee;
+            border: 1px solid #cccccc;
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+        figure {
+            margin: 20px 0;
+        }
+
+        figure img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #999;
+        }
+
+        figcaption {
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .measurement {
+            background-color: #eeeeee;
+            border-left: 4px solid #555;
+            padding: 10px 15px;
+        }
+
+        footer {
+            text-align: center;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Homework 2 - Critical Thinking Lab</h1>
+
+        <p>
+            <strong>Name:</strong> Yalin Zhang
+        </p>
+
+        <p>
+            <strong>Course:</strong> CSC 4370/6370 Web Programming
+        </p>
+
+        <p>
+            All tests and screenshots were created from my Homework 2
+            implementation using Google Chrome.
+        </p>
+    </header>
+
+
+    <main>
+
+        <!-- =========================================================
+             Q1
+             ========================================================= -->
+
+        <section id="q1">
+
+            <h2>Q1 - Cascade Investigation</h2>
+
+            <h3>Investigation</h3>
+
+            <p>
+                I investigated the background of one review box using
+                Chrome DevTools. In my normal implementation, the
+                <code>.review-box</code> rule sets the background color
+                to <code>#E1D697</code>.
+            </p>
+
+            <h3>CSS Excerpt</h3>
+
+            <pre><code>.review-box {
+    background-color: #E1D697;
+    border: 2px solid gray;
+    padding: 8px;
+    font-weight: bold;
+}</code></pre>
+
+            <p>
+                The page background is defined separately on the body:
+            </p>
+
+            <pre><code>body {
+    margin: 0;
+    padding: 0;
+    background-image: url("background.png");
+    font-family: Verdana, Tahoma, sans-serif;
+    font-size: 8pt;
+}</code></pre>
+
+            <h3>Before</h3>
+
+            <figure>
+                <img
+                    src="evidence/q1-before-background.png"
+                    alt="480 pixel viewport showing the review box before removing its background color">
+                <figcaption>
+                    Figure 1. Before the test at a 480px viewport.
+                    The review box uses background-color: #E1D697.
+                </figcaption>
+            </figure>
+
+            <h3>After</h3>
+
+            <figure>
+                <img
+                    src="evidence/q1-after-background.png"
+                    alt="480 pixel viewport showing the review box after temporarily disabling its background color">
+                <figcaption>
+                    Figure 2. After temporarily disabling the
+                    background-color declaration in Chrome DevTools.
+                </figcaption>
+            </figure>
+
+            <h3>Explanation</h3>
+
+            <p>
+                Before the change, the class selector
+                <code>.review-box</code> directly paints the review box
+                with <code>#E1D697</code>. I temporarily disabled only
+                this declaration in Chrome DevTools. After it was
+                disabled, there was no competing author rule in my
+                stylesheet that supplied another background color to
+                the review box.
+            </p>
+
+            <p>
+                The review box therefore used its default transparent
+                background. Because the box became transparent, the
+                page background behind it became visible. The visible
+                image comes from the body's
+                <code>background-image: url("background.png")</code>
+                rule. The body background is not inherited as the
+                review box's background; it is visible through the
+                transparent box.
+            </p>
+
+            <p>
+                In terms of the cascade, the
+                <code>.review-box</code> class selector supplies the
+                author background-color declaration when that
+                declaration is enabled. After I disabled that
+                declaration, there was no later or more specific
+                background-color declaration for the review box to
+                replace it. I restored
+                <code>background-color: #E1D697</code> after completing
+                the test.
+            </p>
+
+        </section>
+
+
+        <!-- =========================================================
+             Q2
+             ========================================================= -->
+
+        <section id="q2">
+
+            <h2>Q2 - Responsive Trade-off</h2>
+
+            <h3>Computed Measurements at Exactly 480px</h3>
+
+            <div class="measurement">
+                <p><strong>Viewport width:</strong> 480px</p>
+
+                <p>
+                    <strong>Main review region (#reviews):</strong>
+                    472px
+                </p>
+
+                <p>
+                    <strong>Sidebar (#overview):</strong>
+                    472px
+                </p>
+
+                <p>
+                    <strong>Overview image:</strong>
+                    472px
+                </p>
+            </div>
+
+            <p>
+                At the 480px viewport, my content uses
+                <code>box-sizing: border-box</code>. The outer content
+                frame has a 4px border on both sides. This leaves 472px
+                inside the frame for the responsive content.
+            </p>
+
+            <h3>Responsive CSS Excerpt</h3>
+
+            <pre><code>@media screen and (max-width: 700px) {
+
+    #content,
+    #content * {
+        box-sizing: border-box;
+    }
+
+    #content {
+        width: 100%;
+        box-sizing: border-box;
+
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "reviews"
+            "overview"
+            "footer";
+    }
+
+    #review-columns {
+        flex-direction: column;
+    }
+
+    .review-column {
+        width: 100%;
+    }
+
+    #overview {
+        width: 100%;
+    }
+
+    #overview-image {
+        width: 100%;
+        max-width: none;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #movie-title {
+        font-size: 20pt;
+    }
+}</code></pre>
+
+            <h3>Controlled Layout Comparison</h3>
+
+            <p>
+                My deliberate trade-off is to stack the review columns
+                vertically on smaller screens. This requires more
+                vertical scrolling, but it gives each review more
+                horizontal space and avoids squeezing two review
+                columns into a narrow mobile viewport.
+            </p>
+
+            <p>
+                To test this decision, I temporarily changed
+                <code>flex-direction</code> from
+                <code>column</code> to <code>row</code> in Chrome
+                DevTools at exactly 480px. I did not save this change
+                to my final stylesheet.
+            </p>
+
+            <figure>
+                <img
+                    src="evidence/q2-480px-row-test.png"
+                    alt="480 pixel viewport with review columns temporarily changed to a row">
+                <figcaption>
+                    Figure 3. Temporary 480px test using
+                    flex-direction: row. The two review columns become
+                    narrow and the review text wraps much more.
+                </figcaption>
+            </figure>
+
+            <figure>
+                <img
+                    src="evidence/q2-480px-column-final.png"
+                    alt="480 pixel viewport using the final single-column review layout">
+                <figcaption>
+                    Figure 4. Final 480px layout using
+                    flex-direction: column.
+                </figcaption>
+            </figure>
+
+            <p>
+                The temporary row layout reduced the vertical length of
+                the review area, but each review became much narrower
+                and required more line wrapping. I kept
+                <code>flex-direction: column</code> as my final value
+                because readability is more important on the narrow
+                viewport. It also keeps the review content inside the
+                responsive frame without horizontal scrolling.
+            </p>
+
+        </section>
+
+
+        <!-- =========================================================
+             Q3
+             ========================================================= -->
+
+        <section id="q3">
+
+            <h2>Q3 - Architecture Defense</h2>
+
+            <h3>Grid for the Major Content Frame</h3>
+
+            <p>
+                I used CSS Grid for the major page regions because the
+                relationship between the reviews, overview, and footer
+                is a two-dimensional page-level layout. The desktop
+                version uses a 550px review region and a 250px overview
+                region, while the footer spans both columns.
+            </p>
+
+            <pre><code>#content {
+    width: 800px;
+    margin: 0 auto;
+    border: 4px solid gray;
+
+    display: grid;
+    grid-template-columns: 550px 250px;
+    grid-template-areas:
+        "reviews overview"
+        "footer footer";
+}
+
+#reviews {
+    grid-area: reviews;
+}
+
+#overview {
+    grid-area: overview;
+}
+
+#review-footer {
+    grid-area: footer;
+}</code></pre>
+
+            <p>
+                At 700px and below, I keep the same named Grid areas but
+                change the frame to one column:
+            </p>
+
+            <pre><code>grid-template-columns: 1fr;
+grid-template-areas:
+    "reviews"
+    "overview"
+    "footer";</code></pre>
+
+            <h3>Flexbox for Review Metadata</h3>
+
+            <p>
+                I used Flexbox for each reviewer's metadata because the
+                critic icon and critic information form a
+                one-dimensional relationship. The icon stays on the
+                left while the reviewer's name and publication stay
+                together beside it.
+            </p>
+
+            <pre><code>.critic {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.critic img {
+    flex-shrink: 0;
+}
+
+.critic-info {
+    flex: 1;
+}</code></pre>
+
+            <h3>Measured Responsive Results</h3>
+
+            <div class="measurement">
+                <p><strong>700px viewport:</strong></p>
+                <p>#content computed width = 700px</p>
+                <p>#overview computed width = 692px</p>
+                <p>#overview-image computed width = 692px</p>
+
+                <p><strong>480px viewport:</strong></p>
+                <p>#content computed width = 480px</p>
+                <p>#overview computed width = 472px</p>
+                <p>#overview-image computed width = 472px</p>
+            </div>
+
+            <p>
+                These measurements show that the responsive layout fits
+                inside both tested viewport widths. At 700px, the
+                4px borders on both sides leave 692px of internal
+                content width. At 480px, the same borders leave 472px.
+                The overview and its image use those available internal
+                widths rather than forcing the original 250px sidebar
+                arrangement.
+            </p>
+
+            <h3>700px Evidence</h3>
+
+            <figure>
+                <img
+                    src="evidence/hw2-700px-computed.png"
+                    alt="Homework 2 page at exactly 700 pixels with computed width evidence">
+                <figcaption>
+                    Figure 5. The page at exactly 700px with computed
+                    dimension evidence.
+                </figcaption>
+            </figure>
+
+            <h3>480px Evidence</h3>
+
+            <figure>
+                <img
+                    src="evidence/hw2-480px-computed.png"
+                    alt="Homework 2 page at exactly 480 pixels with computed width evidence">
+                <figcaption>
+                    Figure 6. The page at exactly 480px with computed
+                    dimension evidence.
+                </figcaption>
+            </figure>
+
+            <h3>Grid Architecture Evidence</h3>
+
+            <figure>
+                <img
+                    src="evidence/q3-grid-architecture.png"
+                    alt="Chrome DevTools showing the named Grid layout used by the main content frame">
+                <figcaption>
+                    Figure 7. Named Grid areas control the major page
+                    regions and switch to a single-column arrangement
+                    at the responsive breakpoint.
+                </figcaption>
+            </figure>
+
+            <h3>Flexbox Metadata Evidence</h3>
+
+            <figure>
+                <img
+                    src="evidence/q3-flex-reviewer-metadata.png"
+                    alt="Chrome DevTools showing Flexbox used for critic metadata">
+                <figcaption>
+                    Figure 8. Flexbox aligns the critic icon and critic
+                    information inside each repeated review component.
+                </figcaption>
+            </figure>
+
+            <h3>Architecture Rationale</h3>
+
+            <p>
+                Grid is the better choice for the major content frame
+                because I need explicit relationships between large
+                page regions: reviews, overview, and footer. Named Grid
+                areas also make the responsive reorganization clear
+                when the layout changes from desktop columns to a
+                single column.
+            </p>
+
+            <p>
+                Flexbox is the better choice for the review metadata
+                because each critic row only needs alignment along one
+                primary direction. The critic image does not shrink,
+                the text receives the remaining space, and the 5px gap
+                keeps the repeated metadata consistently aligned.
+                Therefore, Grid controls the page architecture while
+                Flexbox controls the smaller repeated component.
+            </p>
+
+        </section>
+
+
+        <!-- =========================================================
+             Q4
+             ========================================================= -->
+
+        <section id="q4">
+
+            <h2>Q4 - Failure Analysis</h2>
+
+            <h3>Controlled Defect</h3>
+
+            <p>
+                I created a separate copy of my page named
+                <code>failure-test.html</code> so that the original
+                <code>index.html</code> remained unchanged. In the
+                separate copy, I intentionally removed the closing
+                <code>&lt;/h1&gt;</code> tag from the movie title.
+            </p>
+
+            <p>
+                The defective code was:
+            </p>
+
+            <pre><code>&lt;h1 id="movie-title"&gt;TMNT (2007)</code></pre>
+
+            <h3>Defect State</h3>
+
+            <figure>
+                <img
+                    src="evidence/q4-failure-validation.png"
+                    alt="W3C validator showing errors caused by an unclosed h1 element in failure-test.html">
+                <figcaption>
+                    Figure 9. W3C validation result for the controlled
+                    defect in failure-test.html.
+                </figcaption>
+            </figure>
+
+            <h3>Diagnosis and Root Cause</h3>
+
+            <p>
+                The W3C validator reported four errors. The most direct
+                error was <strong>Unclosed element h1</strong>. The
+                missing closing tag also caused additional errors
+                involving elements that followed the heading because
+                the parser continued treating later markup as part of
+                the unclosed heading structure.
+            </p>
+
+            <p>
+                The root cause was therefore not four independent
+                problems. It was one missing
+                <code>&lt;/h1&gt;</code> closing tag that produced
+                several related validation errors.
+            </p>
+
+            <h3>Correction</h3>
+
+            <p>
+                I restored the heading to:
+            </p>
+
+            <pre><code>&lt;h1 id="movie-title"&gt;TMNT (2007)&lt;/h1&gt;</code></pre>
+
+            <p>
+                I then validated the separate test page again.
+            </p>
+
+            <h3>Corrected State</h3>
+
+            <figure>
+                <img
+                    src="evidence/q4-corrected-validation.png"
+                    alt="W3C validator showing no errors or warnings after correcting failure-test.html">
+                <figcaption>
+                    Figure 10. After restoring the closing h1 tag, the
+                    validator completed with no errors or warnings.
+                </figcaption>
+            </figure>
+
+            <p>
+                The original failure screenshot was preserved, and the
+                corrected validation result was recorded separately.
+                My submitted <code>index.html</code> was not modified
+                to create this controlled defect.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>
+            Homework 2 - My Movie Review | Critical Thinking Lab
+        </p>
+    </footer>
+
+</body>
+
+</html>
